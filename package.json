@@ -1,0 +1,38 @@
+{
+  "name": "cpu-perf-counters",
+  "version": "0.5.0",
+  "description": "CPU performance counters for Linux",
+  "keywords": [
+    "performance",
+    "linux",
+    "perf_events",
+    "benchmark",
+    "cpu"
+  ],
+  "license": "Apache-2.0",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "author": {
+    "email": "gh@rayglover.net",
+    "name": "Ray Glover"
+  },
+  "repository": {
+    "url": "https://github.com/rayglover-ibm/cpu-perf-counters.js",
+    "type": "git"
+  },
+  "engines": {
+    "node": ">=12.17.0"
+  },
+  "scripts": {
+    "install": "cmake-js compile",
+    "test": "teenytest 'tests/*.test.js'"
+  },
+  "dependencies": {
+    "bindings": "^1.5",
+    "cmake-js": "^6.2",
+    "node-addon-api": "^4.2"
+  },
+  "devDependencies": {
+    "teenytest": "^5.2"
+  }
+}

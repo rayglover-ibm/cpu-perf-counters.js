@@ -6,7 +6,7 @@
 declare namespace cpuPerfCounters
 {
     /**
-     * Supported Hardware and software Counters.
+     * Supported hardware and software Counters.
      *
      * @remarks Not all counters may be available on the current hardware
      * configuration and some some combinations of counters may cause errors on
@@ -48,8 +48,6 @@ declare namespace cpuPerfCounters
         function toString(c: CounterType): string;
     }
 
-    const x = 0n;
-
     /**
      * A group of counters which can be read and reset simultaneously
      */
@@ -74,49 +72,6 @@ declare namespace cpuPerfCounters
 
         /** Stop all counters */
         stop();
-    }
-
-    /**
-     * Utility representing a statistical sample of numbers. Based on
-     * Welford's online algorithm.
-     */
-    class OnlineStats {
-        /** Sample size */
-        N(): number;
-
-        /** Arithmetic mean */
-        mean(): number;
-
-        /** Population standard deviation */
-        std(): number;
-
-        /** Coefficient of variation */
-        cov(): number;
-
-        /**
-         * Skewness - a measure of the lack of symmetry.
-         *
-         * @returns zero for a normal distribution, negative values for left skew
-         * and positive values for right skew.
-         */
-        skewness(): number;
-
-        /**
-         * Kurtosis - a measure of tailedness relative to a normal distribution.
-         *
-         * @returns zero for a normal distribution, positive values for heavy-tailed
-         * distributions and negative values for light-tailed distributions.
-         */
-        kurtosis(): number;
-
-        /**
-         * Add an observation to the sample
-         * @returns The new size of the sample
-         */
-        push(x: number): number;
-
-        /** Clone the current instance */
-        clone(): OnlineStats;
     }
 
     /**

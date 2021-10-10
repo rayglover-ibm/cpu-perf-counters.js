@@ -95,7 +95,7 @@ const tests = {
 
 const SoftwareOnly = {
     'Hardware counters Should throw error': () => {
-        throws(() => begin(CounterType.CYCLES));
+        throws(() => begin(CounterType.CYCLES), /Failed to create event/);
     },
     'Software counters Still available': () => {
         const group = begin(CounterType.CONTEXT_SWITCHES);

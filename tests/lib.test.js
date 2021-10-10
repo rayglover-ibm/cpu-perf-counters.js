@@ -93,10 +93,37 @@ const tests = {
     }
 }
 
+const SoftwareOnly = {
+    'Hardware counters Should throw error': () => {
+        throws(() => begin(CounterType.CYCLES));
+    },
+    'Software counters Still available': () => {
+        const group = begin(CounterType.CONTEXT_SWITCHES);
+        group.reset();
+
+        factorial(10);
+        const x = group.read();
+        equal(typeof x, 'bigint');
+        ok(x >= 0n);
+    
+        group.stop();
+    }
+}
+
+/** @returns true if there are permissions to use the perf_events subsystem */
+function supportsPerfEvents() {
+    try {
+        const out = execFileSync('sysctl', ['-n', 'kernel.perf_event_paranoid'], { encoding: 'utf-8' });
+        return Number(out) <= 1;
+    } catch (err) {
+        return false;
+    }
+}
+
 /** @returns true if one or more cpu's support performance monitoring */
 function supportedCpu() {
     try {
-        const out = execFileSync('grep', ['-c', 'arch_permon', '/proc/cpuinfo'], { encoding: 'utf-8' });
+        const out = execFileSync('grep', ['-c', 'arch_perfmon', '/proc/cpuinfo'], { encoding: 'utf-8' });
         return Number(out) > 0;
     } catch (err) {
         // 0 matches causes grep to error
@@ -105,8 +132,17 @@ function supportedCpu() {
     }
 }
 
-if (!supportedCpu()) {
-    console.warn('##\n## UNSUPPORTED CPU TESTS NOT RUN\n##\n');
-} else {
+const config = {
+    supportedCpu: supportedCpu(),
+    supportsPerfEvents: supportsPerfEvents()
+}
+
+console.info('## Test config:', config);
+
+if (config.supportedCpu && config.supportsPerfEvents) {
     module.exports = tests;
+} else if (config.supportsPerfEvents) {
+    module.exports = SoftwareOnly;
+} else {
+    console.warn('##\n## NO TESTS RUN: UNSUPPORTED CPU AND PERMISSIONS\n##\n');
 }

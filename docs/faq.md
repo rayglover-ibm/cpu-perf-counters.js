@@ -9,7 +9,7 @@ A: It exposes performance counters to Node.js. Benchmarking libraries could use 
 A: This error is typically caused by the default permissions for unprivileged users on newer Linux systems. These permissions are controlled by the  [`perf_event_paranoid`](https://www.kernel.org/doc/Documentation/sysctl/kernel.txt) sysctl file and can be set like so:
 
 ```
-sudo sh -c 'echo 1 > /proc/sys/kernel/perf_event_paranoid'
+sudo sysctl -w kernel.perf_event_paranoid=1
 ```
 
 ## Can I use this in AWS/Azure/Virtualised environments?

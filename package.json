@@ -24,7 +24,7 @@
     "node": ">=12.17.0"
   },
   "scripts": {
-    "install": "cmake-js compile",
+    "install": "cmake-js compile -G Ninja --cxx clang++",
     "test": "teenytest 'tests/*.test.js'"
   },
   "dependencies": {

@@ -34,7 +34,7 @@ jobs:
           cache: 'npm'
       
       - name: Set up Clang
-        if: matrix.os == 'linux-latest'
+        if: matrix.os == 'ubuntu-latest'
         uses: egor-tensin/setup-clang@v1
         with:
           version: 10
@@ -61,6 +61,8 @@ jobs:
     name: npm package deployment
     if: startsWith(github.ref, 'refs/tags/v')
     steps:
+      - uses: actions/checkout@v2
+
       - name: Match tag to package version
         uses: geritol/match-tag-to-package-version@0.2.0
         with:

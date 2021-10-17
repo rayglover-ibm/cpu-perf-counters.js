@@ -2,7 +2,7 @@
 
 _Performance counters for Node.js_
 
-This package exposes support for performance counters on modern processors. It's designed as a drop-in replacement for [`process.hrtime.bigint()`](https://nodejs.org/api/process.html#process_process_hrtime_bigint), enabling different types of performance analysis.
+This package exposes performance counters of modern processors to Node.js applications. It's designed as a drop-in replacement for [`process.hrtime.bigint()`](https://nodejs.org/api/process.html#process_process_hrtime_bigint), enabling different types of performance analysis.
 
 Currently this package only supports Linux via the `perf_event_open` performance monitoring API (used by Linux [perf](https://en.wikipedia.org/wiki/Perf_(Linux))).
 

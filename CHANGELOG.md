@@ -1,3 +1,7 @@
+## 0.5.12
+
+- [build] Fixes for prebuilt binaries
+
 ## 0.5.11
 
 - [build] Fixes for prebuilt binaries

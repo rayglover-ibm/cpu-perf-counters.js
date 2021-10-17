@@ -31,14 +31,14 @@ jobs:
       - name: Install CMake, Ninja
         uses: lukka/get-cmake@latest
       
-      - name: NPM install
+      - name: NPM install, test
         run: |
           npm install
           npm test
         env:
           npm_config_build_from_source: true
 
-      - name: Prebuild Upload prebuilt binaries
+      - name: Upload prebuilt binaries
         run: npm run prebuild -- -u "$GH_TOKEN"
         env:
           GH_TOKEN: ${{ secrets.GH_DEPLOY_TOKEN }}

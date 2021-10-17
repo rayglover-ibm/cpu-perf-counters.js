@@ -1,3 +1,7 @@
+## 0.5.13
+
+- [fix] npm audit fix
+
 ## 0.5.12
 
 - [build] Fixes for prebuilt binaries

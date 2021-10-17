@@ -3,8 +3,6 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -13,12 +11,20 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node-version: [12.17.x, 16.x]
+        # test unsupported platforms to check something reasonable happens
         include:
           - os: windows-latest
+            node-version: 16.x
+          - os: macos-latest
             node-version: 16.x
 
     name: Node ${{ matrix.node_version }} on ${{ matrix.os }}
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - uses: actions/checkout@v2
       
       - name: Use Node.js ${{ matrix.node-version }}
@@ -28,6 +34,7 @@ jobs:
           cache: 'npm'
       
       - name: Set up Clang
+        if: matrix.os != 'windows-latest'
         uses: egor-tensin/setup-clang@v1
         with:
           version: 10
@@ -42,3 +49,4 @@ jobs:
           npm_config_build_from_source: true
 
       - run: npm test
+ 

@@ -39,7 +39,9 @@ jobs:
           npm_config_build_from_source: true
 
       - name: Prebuild Upload prebuilt binaries
-        run: npm run prebuild -- -u ${{ secrets.GH_DEPLOY_TOKEN }}
+        run: npm run prebuild -- -u "$GH_TOKEN"
+        env:
+          GH_TOKEN: ${{ secrets.GH_DEPLOY_TOKEN }}
 
       - name: publish
         uses: JS-DevTools/npm-publish@v1

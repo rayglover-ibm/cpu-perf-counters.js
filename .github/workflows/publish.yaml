@@ -36,7 +36,7 @@ jobs:
           npm install
           npm test
         env:
-          npm_config_build_from_source=true
+          npm_config_build_from_source: true
 
       - name: Prebuild
         run: npm run prebuild

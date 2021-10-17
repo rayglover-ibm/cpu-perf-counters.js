@@ -2,7 +2,6 @@ name: NPM Publish
 
 on:
   push:
-    branches: [ master ]
     tags:
       - 'v*'
 
@@ -11,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: JS-DevTools/npm-publish@v1
+
+      - name: match-tag-to-package-version
+        uses: geritol/match-tag-to-package-version@0.2.0
+        with:
+          TAG_PREFIX: v
+
+      - name: publish
+        uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}

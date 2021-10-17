@@ -17,9 +17,8 @@ jobs:
           TAG_PREFIX: v
 
       - name: prebuild
-        run: >
-          npm run prebuild
-          npm run prebuild -u ${{ secrets.GH_DEPLOY_TOEKN }}
+        run: npm run prebuild
+        run: npm run prebuild -u ${{ secrets.GH_DEPLOY_TOEKN }}
 
       - name: publish
         uses: JS-DevTools/npm-publish@v1

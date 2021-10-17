@@ -1,3 +1,7 @@
+## 0.5.2
+
+- [build] Prebuilt binaries for linux
+
 ## 0.5.1
 
 - [build] Prefer Clang on GNU systems

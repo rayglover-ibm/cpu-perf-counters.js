@@ -1,8 +1,14 @@
 {
   "name": "cpu-perf-counters",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "CPU performance counters for Linux",
-  "keywords": ["performance", "linux", "perf_events", "benchmark", "cpu"],
+  "keywords": [
+    "performance",
+    "linux",
+    "perf_events",
+    "benchmark",
+    "cpu"
+  ],
   "license": "Apache-2.0",
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -19,14 +25,22 @@
   },
   "scripts": {
     "install": "cmake-js compile --prefer-clang",
-    "test": "teenytest 'tests/*.test.js'"
+    "test": "teenytest 'tests/*.test.js'",
+    "prebuild": "prebuild -r napi --all --verbose --backend cmake-js"
   },
   "dependencies": {
     "bindings": "^1.5",
     "cmake-js": "^6.2",
-    "node-addon-api": "^4.2"
+    "node-addon-api": "^4.2",
+    "prebuild-install": "^6.1"
   },
   "devDependencies": {
-    "teenytest": "^5.2"
+    "teenytest": "^5.2",
+    "prebuild": "^11.0.0"
+  },
+  "binary": {
+    "napi_versions": [
+      6
+    ]
   }
 }

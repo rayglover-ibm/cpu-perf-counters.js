@@ -1,4 +1,4 @@
-name: NPM Publish
+name: Linux prebuild & Publish
 
 on:
   push:
@@ -15,6 +15,11 @@ jobs:
         uses: geritol/match-tag-to-package-version@0.2.0
         with:
           TAG_PREFIX: v
+
+      - name: prebuild
+        run: >
+          npm run prebuild
+          npm run prebuild -u ${{ secrets.GH_DEPLOY_TOEKN }}
 
       - name: publish
         uses: JS-DevTools/npm-publish@v1

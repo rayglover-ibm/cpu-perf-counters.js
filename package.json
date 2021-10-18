@@ -1,6 +1,6 @@
 {
   "name": "cpu-perf-counters",
-  "version": "0.5.16",
+  "version": "0.5.17",
   "description": "CPU performance counters for Linux",
   "keywords": [
     "performance",

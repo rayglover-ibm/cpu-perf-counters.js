@@ -1,3 +1,7 @@
+## 0.5.17
+
+- [ci] build fixes
+
 ## 0.5.13
 
 - [fix] npm audit fix

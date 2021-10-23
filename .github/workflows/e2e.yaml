@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [12.17.x, lts/*]
+        node-version: [12.17.x, lts/*]
 
     name: Node ${{ matrix.node-version }} on ${{ matrix.os }}
     steps:
@@ -17,9 +17,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+          check-latest: true
             
       - name: Install and Test
         run: |
+          node --version
           mkdir test && cd test
 
           npm init --yes

@@ -1,8 +1,10 @@
 name: e2e
 
 on:
-  push:
-    branches: [ master ]
+  workflow_dispatch:
+  schedule:
+    # twice a month
+    - cron:  '0 0 */15 * *'
 
 jobs:
   build:
@@ -27,4 +29,4 @@ jobs:
           npm init --yes
           npm add cpu-perf-counters
           
-          node -e "const { begin, CounterType } = require('cpu-perf-counters'); const sampler = begin();"
+          node -e "const { begin } = require('cpu-perf-counters'); const sampler = begin();"

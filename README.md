@@ -12,7 +12,7 @@ Currently this package only supports Linux via the `perf_event_open` performance
 npm install cpu-perf-counters
 ```
 
-Note this package comes prebuilt for Linux (x64).
+Note this package comes prebuilt for Linux (x64) and node v12.17 or later.
 
 ## Usage
 

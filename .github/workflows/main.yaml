@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # test unsupported platforms to check something reasonable happens
+        # Test unsupported platforms to check something reasonable happens
         include:
           - os: windows-latest
             node-version: 16.x
@@ -50,12 +50,14 @@ jobs:
         env:
           npm_config_build_from_source: true
 
-      - name: Prebuilt Binaries
+      # Create a release on git refs that begin with 'v'
+      - name: Release Prebuilt Binaries
         if: matrix.prebuild && startsWith(github.ref, 'refs/tags/v')
         run: npm run prebuild -- -u "$GH_TOKEN"
         env:
           GH_TOKEN: ${{ secrets.GH_DEPLOY_TOKEN }}
 
+  # Deploy to npm on git refs that begin with 'v'
   release:
     runs-on: ubuntu-latest
     name: npm package deployment

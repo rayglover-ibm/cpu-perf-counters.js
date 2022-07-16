@@ -2,11 +2,11 @@
 
 ## Is this a benchmarking library?
 
-A: It exposes performance counters to Node.js. Benchmarking libraries could use this utility to support a wider range of performance analysis, and create more reliable (repeatable) benchmarks.
+This library exposes hardware performance counters via Node.js; benchmarking libraries could use this to support a wider range of performance analysis, and create more reliable (repeatable) benchmarks for Node.js applications.
 
 ## `begin()` raises `Error: Failed to create event (Permission denied)`
 
-A: This error is typically caused by the default permissions for unprivileged users on newer Linux systems. These permissions are controlled by the  [`perf_event_paranoid`](https://www.kernel.org/doc/Documentation/sysctl/kernel.txt) sysctl file and can be set like so:
+This error is typically caused by the default permissions for unprivileged users on newer Linux systems. These permissions are controlled by the  [`perf_event_paranoid`](https://www.kernel.org/doc/Documentation/sysctl/kernel.txt) sysctl file and can be set like so:
 
 ```
 sudo sysctl -w kernel.perf_event_paranoid=1

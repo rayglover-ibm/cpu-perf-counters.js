@@ -10,7 +10,12 @@ include_directories (${CMAKE_JS_INC})
 
 add_library (${PROJECT_NAME} SHARED
     "src/addon.cc"
-    "$<$<PLATFORM_ID:Linux>:src/counter_group.linux.cc>"
+
+    # Linux only
+    "$<IF:$<PLATFORM_ID:Linux>,"
+        "src/counter_group.linux.cc,"
+        "src/counter_group.unknown.cc"
+    ">"
 )
 
 set_target_properties (${PROJECT_NAME} PROPERTIES
@@ -37,10 +42,7 @@ target_compile_definitions (${PROJECT_NAME}
 )
 
 target_compile_options (${PROJECT_NAME} PUBLIC
-    -Wall -Wextra -pedantic
-    -msse2
-    -O2
-    -fno-omit-frame-pointer
+    "$<$<CXX_COMPILER_ID:Clang>:-Wall;-Wextra;-pedantic;-msse2;-O2;-fno-omit-frame-pointer>"
 )
 
 # Essential library files to link to a node addon,

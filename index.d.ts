@@ -6,7 +6,7 @@
 declare namespace cpuPerfCounters
 {
     /**
-     * Supported Hardware and software Counters.
+     * Supported hardware and software Counters.
      *
      * @remarks Not all counters may be available on the current hardware
      * configuration and some some combinations of counters may cause errors on
@@ -47,8 +47,6 @@ declare namespace cpuPerfCounters
     namespace CounterType {
         function toString(c: CounterType): string;
     }
-
-    const x = 0n;
 
     /**
      * A group of counters which can be read and reset simultaneously

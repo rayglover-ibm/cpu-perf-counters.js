@@ -23,6 +23,7 @@ const tests = {
             CounterType.CPU_CLOCK,
             CounterType.CYCLES,
             CounterType.INSTRUCTIONS,
+            CounterType.TASK_CLOCK,
         ];
 
         types.forEach(type => {

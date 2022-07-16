@@ -77,49 +77,6 @@ declare namespace cpuPerfCounters
     }
 
     /**
-     * Utility representing a statistical sample of numbers. Based on
-     * Welford's online algorithm.
-     */
-    class OnlineStats {
-        /** Sample size */
-        N(): number;
-
-        /** Arithmetic mean */
-        mean(): number;
-
-        /** Population standard deviation */
-        std(): number;
-
-        /** Coefficient of variation */
-        cov(): number;
-
-        /**
-         * Skewness - a measure of the lack of symmetry.
-         *
-         * @returns zero for a normal distribution, negative values for left skew
-         * and positive values for right skew.
-         */
-        skewness(): number;
-
-        /**
-         * Kurtosis - a measure of tailedness relative to a normal distribution.
-         *
-         * @returns zero for a normal distribution, positive values for heavy-tailed
-         * distributions and negative values for light-tailed distributions.
-         */
-        kurtosis(): number;
-
-        /**
-         * Add an observation to the sample
-         * @returns The new size of the sample
-         */
-        push(x: number): number;
-
-        /** Clone the current instance */
-        clone(): OnlineStats;
-    }
-
-    /**
      * Begin a new counter group with the given counter types
      */
     function begin(...counters: CounterType[]): CounterGroup;
